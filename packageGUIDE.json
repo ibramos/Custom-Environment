@@ -9,6 +9,10 @@
 	// BEST PRACTICE: install dependencies locally to prevent mixups in versions
 	// ex. npm run test -> will run the "test" script
 	"scripts": {
+		// deletes all the files in the build directory
+		"clean": "rimraf build",
+		// cleans the build directory before building the application
+		"build": "npm run clean && webpack",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"repository": {
@@ -26,8 +30,10 @@
 	"devDependencies": {
 		// babel-core is the logic to take in code, transform it, and then generate the output files
 		"babel-core": "^6.26.0",
-		// babel-preset-env is the ruleset for telling babel what pieces of ES5/ES6/ES7 syntax to look for, and how to turn it into ES5 code.
+		// babel-preset-env is the ruleset for telling babel what pieces of ES5/ES6/ES7 syntax to look for, and how to turn it into ES5 code
 		"babel-preset-env": "^1.6.0",
+		// babel-preset-react is the ruleset for telling babel to transform JSX syntax into createElement calls
+		"babel-preset-react": "^6.24.1",
 		// babel-loader teaches babel to work with webpack
 		"babel-loader": "^7.1.2",
 		// css-loader deals with CSS imports
@@ -37,8 +43,12 @@
 		"extract-text-webpack-plugin": "^3.0.1",
 		// works in conjuction with url-loader to serve extracted files
 		"file-loader": "^1.1.4",
+		// html-webpack-plugin is to replace the need for manually maintaining script tags upon bundle generation
+		"html-webpack-plugin": "^2.30.1",
 		// image-webpack-loader compresses the image size automatically
 		"image-webpack-loader": "^3.4.2",
+		// rimraf handles inconsistencies in the delete command between OSX and Windows
+		"rimraf": "^2.6.2",
 		// style-loader takes CSS imports and inject it into a style tag in the HTML document
 		"style-loader": "^0.19.0",
 		// url-loader behaves depending on the output image size
@@ -47,5 +57,16 @@
 		"url-loader": "^0.5.9",
 		// webpack at its core links up JS modules together in a correct order
 		"webpack": "^3.6.0"
+	},
+	// regular depenencies are intended for production
+	// BEST PRACTICE: only add modules that are required to start the application to prevent unnecessary bloating
+	"dependencies": {
+		"axios": "^0.16.2",
+		"react": "^16.0.0",
+		"react-dom": "^16.0.0",
+		"react-redux": "^5.0.6",
+		"react-router-dom": "^4.2.2",
+		"redux": "^3.7.2",
+		"redux-thunk": "^2.2.0"
 	}
 }
