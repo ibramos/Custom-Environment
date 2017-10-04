@@ -120,10 +120,16 @@ const config = {
 		// if any modules are identical, they will be pulled out and added into the vendor entry point
 		// GOTCHA: adding manifest enhances the browser's ability to determine if the vendor file has changed
 		new webpack.optimize.CommonsChunkPlugin({ names: ['vendor', 'manifest'] }),
-		// HtmlWebpackPlugin is to replace the need for manually maintaining script tags upon bundle generation
+		// HtmlWebPackPlugin is to replace the need for manually maintaining script tags upon bundle generation
 		// index.html becomes a template for the bundle to append to
 		// the appropriate link tags will also apply for ExtractTextPlugin generated CSS files
-		new HtmlWebPackPlugin({ template: 'src/index.html' })
+		new HtmlWebPackPlugin({ template: 'src/index.html' }),
+		// whenever React runs, it looks for a Window scoped variable of process.env.NODE_ENV to determine the way that it should behave
+		// in production React will not perform as many error checkings while it runs and renders the application which will increase performance
+		// DefinePlugin is used to define Windows scope variables that will be defined in the bundle so that React behaves accordingly
+		new webpack.DefinePlugin({
+			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+		})
 	],
 	// current bug in webpack
 	// reason for the issue is unknown, but this workaround resolves it

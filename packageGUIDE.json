@@ -12,7 +12,15 @@
 		// deletes all the files in the build directory
 		"clean": "rimraf build",
 		// cleans the build directory before building the application
-		"build": "npm run clean && webpack",
+		// NODE_ENV=production ensures that webpack will be ran in the node environment of production
+		// in production React will not perform as many error checkings while it runs and renders the application which will increase performance
+		// -p tells webpack to create a production version of the output
+		// webpack will automatically minify all of the JavaScript code
+		"build": "NODE_ENV=pruduction npm run clean && webpack -p",
+		// webpack-dev-server acts as an intermediary between browser and webpack output
+		// responsible for watching all project code and automatically rebuilding the project when a change occurs
+		// it only updates the individual JavaScript modules that changed when projects are saved
+		"dev": "webpack-dev-server",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"repository": {
@@ -56,7 +64,14 @@
 		// large results in the raw image being generated in the ouput directory
 		"url-loader": "^0.5.9",
 		// webpack at its core links up JS modules together in a correct order
-		"webpack": "^3.6.0"
+		"webpack": "^3.6.0",
+		// webpack-dev-middleware is used to intercept incoming request for the application and respond with the compiled JavaScript
+		"webpack-dev-middleware": "^1.12.0",
+		// webpack-dev-server acts as an intermediary between browser and webpack output
+		// responsible for watching all project code and automatically rebuilding the project when a change occurs
+		// it only updates the individual JavaScript modules that changed when projects are saved
+		// GOTCHA: project files are served directly to the webpack-dev-server which means no actual files are saved to the project directory
+		"webpack-dev-server": "^2.9.1"
 	},
 	// regular depenencies are intended for production
 	// BEST PRACTICE: only add modules that are required to start the application to prevent unnecessary bloating
