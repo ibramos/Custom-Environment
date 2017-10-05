@@ -1,87 +1,113 @@
 {
-	"name": "custom-environment",
-	"version": "1.0.0",
-	"description": "",
-	// main is the entry point to the module that package.json is describing
-	"main": "index.js",
-	// scripts is an object that exposes additional npm commands
-	// assumes dependencies are in local node_modules folder (IMPORTANT)
-	// BEST PRACTICE: install dependencies locally to prevent mixups in versions
-	// ex. npm run test -> will run the "test" script
-	"scripts": {
-		// deletes all the files in the build directory
-		"clean": "rimraf build",
-		// cleans the build directory before building the application
-		// NODE_ENV=production ensures that webpack will be ran in the node environment of production
-		// in production React will not perform as many error checkings while it runs and renders the application which will increase performance
-		// -p tells webpack to create a production version of the output
-		// webpack will automatically minify all of the JavaScript code
-		"build": "NODE_ENV=pruduction npm run clean && webpack -p",
-		// webpack-dev-server acts as an intermediary between browser and webpack output
-		// responsible for watching all project code and automatically rebuilding the project when a change occurs
-		// it only updates the individual JavaScript modules that changed when projects are saved
-		"dev": "webpack-dev-server",
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/ibramos/Custom-Environment.git"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/ibramos/Custom-Environment/issues"
-	},
-	"homepage": "https://github.com/ibramos/Custom-Environment#readme",
-	// devDepenencies are dependencies intended for developement and testing
-	"devDependencies": {
-		// babel-core is the logic to take in code, transform it, and then generate the output files
-		"babel-core": "^6.26.0",
-		// babel-preset-env is the ruleset for telling babel what pieces of ES5/ES6/ES7 syntax to look for, and how to turn it into ES5 code
-		"babel-preset-env": "^1.6.0",
-		// babel-preset-react is the ruleset for telling babel to transform JSX syntax into createElement calls
-		"babel-preset-react": "^6.24.1",
-		// babel-loader teaches babel to work with webpack
-		"babel-loader": "^7.1.2",
-		// css-loader deals with CSS imports
-		"css-loader": "^0.28.7",
-		// extract-text-webpack-plugin helps separate styles into a separate file
-		// styles will no longer be inlined into the JS bundle
-		"extract-text-webpack-plugin": "^3.0.1",
-		// works in conjuction with url-loader to serve extracted files
-		"file-loader": "^1.1.4",
-		// html-webpack-plugin is to replace the need for manually maintaining script tags upon bundle generation
-		"html-webpack-plugin": "^2.30.1",
-		// image-webpack-loader compresses the image size automatically
-		"image-webpack-loader": "^3.4.2",
-		// rimraf handles inconsistencies in the delete command between OSX and Windows
-		"rimraf": "^2.6.2",
-		// style-loader takes CSS imports and inject it into a style tag in the HTML document
-		"style-loader": "^0.19.0",
-		// url-loader behaves depending on the output image size
-		// small results in the compressed image being bundled in the output
-		// large results in the raw image being generated in the ouput directory
-		"url-loader": "^0.5.9",
-		// webpack at its core links up JS modules together in a correct order
-		"webpack": "^3.6.0",
-		// webpack-dev-middleware is used to intercept incoming request for the application and respond with the compiled JavaScript
-		"webpack-dev-middleware": "^1.12.0",
-		// webpack-dev-server acts as an intermediary between browser and webpack output
-		// responsible for watching all project code and automatically rebuilding the project when a change occurs
-		// it only updates the individual JavaScript modules that changed when projects are saved
-		// GOTCHA: project files are served directly to the webpack-dev-server which means no actual files are saved to the project directory
-		"webpack-dev-server": "^2.9.1"
-	},
-	// regular depenencies are intended for production
-	// BEST PRACTICE: only add modules that are required to start the application to prevent unnecessary bloating
-	"dependencies": {
-		"axios": "^0.16.2",
-		"react": "^16.0.0",
-		"react-dom": "^16.0.0",
-		"react-redux": "^5.0.6",
-		"react-router-dom": "^4.2.2",
-		"redux": "^3.7.2",
-		"redux-thunk": "^2.2.0"
-	}
+  "name": "custom-environment",
+  "version": "1.0.0",
+  "description": "",
+  // main is the entry point to the module that package.json is describing
+  "main": "index.js",
+  // scripts is an object that exposes additional npm commands
+  // assumes dependencies are in local node_modules folder (IMPORTANT)
+  // BEST PRACTICE: install dependencies locally to prevent mixups in versions
+  // ex. npm run test -> will run the "test" script
+  "scripts": {
+    // deletes all the files in the build directory
+    "clean": "rimraf build",
+    // list-different prints out the file names that are different formatting from prettier
+    // write creates the changes to conform styling
+    // single-quote represent the rule for quoting format
+    // print-width is the maximum amount of lenth for each line
+    // parser is the type of module to analyze JavaScript language
+    // \"src/**/*.{js,jsx}\"" will format all .js and .jsx files in the src directory
+    "format":
+      "prettier --list-different --write --single-quote --print-width=120 --parser=flow --tab-width=2 \"src/**/*.{js,jsx}\"",
+    // cleans the build directory before building the application
+    // NODE_ENV=production ensures that webpack will be ran in the node environment of production
+    // in production React will not perform as many error checkings while it runs and renders the application which will increase performance
+    // -p tells webpack to create a production version of the output
+    // webpack will automatically minify all of the JavaScript code
+    "build": "NODE_ENV=pruduction npm run clean && webpack -p",
+    // webpack-dev-server acts as an intermediary between browser and webpack output
+    // responsible for watching all project code and automatically rebuilding the project when a change occurs
+    // it only updates the individual JavaScript modules that changed when projects are saved
+    "dev": "webpack-dev-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ibramos/Custom-Environment.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ibramos/Custom-Environment/issues"
+  },
+  "homepage": "https://github.com/ibramos/Custom-Environment#readme",
+  // devDepenencies are dependencies intended for developement and testing
+  "devDependencies": {
+    // babel-core is the logic to take in code, transform it, and then generate the output files
+    "babel-core": "^6.26.0",
+    // babel-preset-env is the ruleset for telling babel what pieces of ES5/ES6/ES7 syntax to look for, and how to turn it into ES5 code
+    "babel-preset-env": "^1.6.0",
+    // babel-preset-react is the ruleset for telling babel to transform JSX syntax into createElement calls
+    "babel-preset-react": "^6.24.1",
+    // babel-loader teaches babel to work with webpack
+    "babel-loader": "^7.1.2",
+    // css-loader deals with CSS imports
+    "css-loader": "^0.28.7",
+    // formatting module for rules like syntax consistency throughout the application
+    "eslint": "^4.8.0",
+    // enables airbnb syntax check
+    "eslint-config-airbnb": "^15.1.0",
+    // disables all existing formatting rules
+    "eslint-config-prettier": "^2.6.0",
+    // eslint support for webpack
+    "eslint-loader": "^1.9.0",
+    // integrate ESLint with ES2015+ static module syntax
+    "eslint-plugin-import": "^2.7.0",
+    // integrate ESLint with JSX elements
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    // integrate ESLint with prettier
+    "eslint-plugin-prettier": "^2.3.1",
+    // integrate ESLint with react
+    "eslint-plugin-react": "^7.4.0",
+    // extract-text-webpack-plugin helps separate styles into a separate file
+    // styles will no longer be inlined into the JS bundle
+    "extract-text-webpack-plugin": "^3.0.1",
+    // works in conjuction with url-loader to serve extracted files
+    "file-loader": "^1.1.4",
+    // html-webpack-plugin is to replace the need for manually maintaining script tags upon bundle generation
+    "html-webpack-plugin": "^2.30.1",
+    // image-webpack-loader compresses the image size automatically
+    "image-webpack-loader": "^3.4.2",
+    // formatting module for stylistic like spacing and tab consistency throughout the application
+    "prettier": "^1.7.4",
+    // rimraf handles inconsistencies in the delete command between OSX and Windows
+    "rimraf": "^2.6.2",
+    // style-loader takes CSS imports and inject it into a style tag in the HTML document
+    "style-loader": "^0.19.0",
+    // url-loader behaves depending on the output image size
+    // small results in the compressed image being bundled in the output
+    // large results in the raw image being generated in the ouput directory
+    "url-loader": "^0.5.9",
+    // webpack at its core links up JS modules together in a correct order
+    "webpack": "^3.6.0",
+    // webpack-dev-middleware is used to intercept incoming request for the application and respond with the compiled JavaScript
+    "webpack-dev-middleware": "^1.12.0",
+    // webpack-dev-server acts as an intermediary between browser and webpack output
+    // responsible for watching all project code and automatically rebuilding the project when a change occurs
+    // it only updates the individual JavaScript modules that changed when projects are saved
+    // GOTCHA: project files are served directly to the webpack-dev-server which means no actual files are saved to the project directory
+    "webpack-dev-server": "^2.9.1"
+  },
+  // regular depenencies are intended for production
+  // BEST PRACTICE: only add modules that are required to start the application to prevent unnecessary bloating
+  "dependencies": {
+    "axios": "^0.16.2",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
+  }
 }

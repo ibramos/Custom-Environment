@@ -1,0 +1,10 @@
+{
+  "prettier.useTabs": false,
+  "prettier.parser": "babylon",
+  "prettier.singleQuote": true,
+  "prettier.printWidth": 80,
+  "prettier.tabWidth": 2,
+  "prettier.bracketSpacing": true,
+  "prettier.jsxBracketSameLine": false,
+  "prettier.semi": true
+}
